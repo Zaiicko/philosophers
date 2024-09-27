@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/09/27 20:18:54 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/09/27 21:46:35 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <limits.h>
 
 void	error_msg(char *msg);
 void	check_args(int ac, char **av);
-void	check_if_args_are_digit(char **av);
+long	ft_atol(const char *str);
+void	check_if_valid_numbers(char **av);
 
 #endif
