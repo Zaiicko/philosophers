@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/11 03:12:53 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/11 18:36:28 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	check_args(int ac, char **av);
 long	ft_atol(const char *str);
 void	check_if_valid_numbers(char **av);
 void	parse_args(int ac, char **av, t_data *data);
+void	init_data(t_data *data);
+void	init_fork(t_data *data);
 
 #endif

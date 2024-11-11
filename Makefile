@@ -6,7 +6,7 @@
 #    By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 00:52:34 by zaiicko           #+#    #+#              #
-#    Updated: 2024/09/27 19:06:07 by zaiicko          ###   ########.fr        #
+#    Updated: 2024/11/11 19:20:07 by zaiicko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ RM = rm -rf
 SRCS =	main.c\
 	utils.c\
 	args_checker.c\
+	init_data.c\
+	
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRCS))
 
