@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/11 18:36:28 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/11 19:23:48 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef pthread_mutex_t t_mtx;
+typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_fork
 {
 	t_mtx	fork;
-	int	fork_id;
+	int		fork_id;
 }	t_fork;
 
 typedef struct s_philo
 {
 	int			philo_id;
-	long			meals_counter;
-	long			last_meal;
+	long		meals_counter;
+	long		last_meal;
 	t_fork		*l_fork;
 	t_fork		*r_fork;
 	pthread_t	thread_id;
