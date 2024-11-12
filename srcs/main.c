@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 01:54:58 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/09/27 19:37:18 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/12 01:49:19 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int	main(int ac, char **av)
 {
+	t_data	data;
+
 	check_args(ac, av + 1);
+	parse_args(ac, av, &data);
+	init_data(&data);
 }

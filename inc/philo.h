@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/11 19:23:48 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/12 01:41:33 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void	check_if_valid_numbers(char **av);
 void	parse_args(int ac, char **av, t_data *data);
 void	init_data(t_data *data);
 void	init_fork(t_data *data);
+void	init_philo(t_data *data);
+void	init_philosophers(t_data *data);
 
 #endif
