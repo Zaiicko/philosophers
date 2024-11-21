@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:56:14 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/09/27 21:29:34 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/21 04:27:11 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,16 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (nbr * signe);
+}
+
+long	gettime_in_ms(void)
+{
+	long	ms;
+	struct timeval tv;
+
+	ms = 0;
+	if (gettimeofday(&tv, NULL))
+		return (-1);
+	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (ms);
 }
