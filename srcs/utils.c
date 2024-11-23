@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:56:14 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/23 15:56:19 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/23 23:32:25 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ long	ft_atol(const char *str)
 
 long	gettime_in_ms(void)
 {
-	long	ms;
-	struct timeval tv;
+	long			ms;
+	struct timeval	tv;
 
 	ms = 0;
 	if (gettimeofday(&tv, NULL))
