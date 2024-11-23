@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/22 02:36:39 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/23 02:48:41 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 	t_fork		*l_fork;
 	t_fork		*r_fork;
 	pthread_t	thread_id;
-	t_data		*data;
+	struct t_data		*data;
 }	t_philo;
 
 typedef struct s_data
@@ -48,6 +48,7 @@ typedef struct s_data
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			meals_nbr;
+	long			start_time;
 	t_mtx		lock;
 	t_fork		*forks;
 	t_philo		*philos;
