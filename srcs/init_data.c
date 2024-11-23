@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/23 03:06:10 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/23 22:47:25 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void	init_philo(t_data *data)
 {
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->philos_nbr);
 	if (!data->philos)
-	{
-		free(data->forks);
-		error_msg("Error\nphilo struc allocation failed\n");
-	}
+		error_msg_free("Error\nphilo struc allocation failed\n", data);
 	init_philosophers(data);
 }
 
