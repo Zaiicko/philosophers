@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/23 22:47:25 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/23 23:25:47 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	init_fork(t_data *data)
 	while (i < data->philos_nbr)
 	{
 		if (pthread_mutex_init(&data->forks[i].fork, NULL))
+		{
+			free(data->forks);
 			error_msg("Error\nmutex init failed\n");
+		}
 		data->forks[i].fork_id = i;
 		i++;
 	}
