@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:56:14 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/21 04:27:11 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/23 15:56:19 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,18 @@ long	gettime_in_ms(void)
 		return (-1);
 	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (ms);
+}
+
+void	free_all_data(t_data *data)
+{
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
+}
+
+void	error_msg_free(char *msg, t_data *data)
+{
+	free_all_data(data);
+	error_msg(msg);
 }
