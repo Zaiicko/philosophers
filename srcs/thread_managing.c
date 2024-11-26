@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 01:28:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/23 23:31:35 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/26 20:21:12 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	thread_managing(t_data *data)
 	i = 0;
 	while (i < data->philos_nbr)
 	{
-		pthread_create(data->philos[i].thread_id, NULL, routine,
-			data->philos[i])
+		pthread_create(&data->philos[i].thread_id, NULL, routine,
+			&data->philos[i]);
 		i++;
 	}
 	i = 0;
