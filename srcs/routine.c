@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/26 03:00:22 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/26 19:23:04 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	think(t_data *data)
 	printf("%ld %d is thinking\n", ts, data->philos->philo_id);
 }
 
-/*void	*routine(void *philo)
+void	*routine(void *data)
 {
-}*/
+	while (1)
+	{
+		eat((t_data *)data);
+		philo_sleep((t_data *)data);
+		think((t_data *)data);
+	}
+	return (0);
+}

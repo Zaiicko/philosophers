@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/23 23:25:47 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/26 18:53:26 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_philosophers(t_data *data)
 			data->philos[i].r_fork = &data->forks[i];
 			data->philos[i].l_fork = &data->forks[(i + 1) % data->philos_nbr];
 		}
-		data->philos[i].data = (struct t_data *)data;
+		data->philos[i].data = data;
 		i++;
 	}
 }
