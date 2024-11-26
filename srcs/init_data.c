@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/26 18:53:26 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/26 20:36:14 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_philosophers(t_data *data)
 	i = 0;
 	while (i < data->philos_nbr)
 	{
-		data->philos[i].philo_id = i + 1;
+		data->philos[i].id = i + 1;
 		data->philos[i].meals_counter = 0;
 		data->philos[i].last_meal = 0;
 		data->philos[i].r_fork = &data->forks[(i + 1) % data->philos_nbr];
@@ -57,7 +57,7 @@ void	init_fork(t_data *data)
 			free(data->forks);
 			error_msg("Error\nmutex init failed\n");
 		}
-		data->forks[i].fork_id = i;
+		data->forks[i].id = i;
 		i++;
 	}
 }

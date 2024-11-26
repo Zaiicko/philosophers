@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/26 19:30:06 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/26 20:35:00 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ struct	s_data;
 typedef struct s_fork
 {
 	t_mtx	fork;
-	int		fork_id;
+	int		id;
 }	t_fork;
 
 typedef struct s_philo
 {
-	int				philo_id;
+	int				id;
 	long			meals_counter;
 	long			last_meal;
 	t_fork			*l_fork;
