@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/27 18:37:12 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/27 18:55:14 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_sleep(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
 	long	ts;
 
 	data = ((t_philo *)philo)->data;
@@ -25,7 +25,7 @@ void	philo_sleep(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
 	long	ts;
 
 	data = ((t_philo *)philo)->data;
@@ -41,7 +41,7 @@ void	eat(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
 	long	ts;
 
 	data = ((t_philo *)philo)->data;
@@ -51,7 +51,7 @@ void	think(t_philo *philo)
 
 void	*routine(void *philo)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = ((t_philo *)philo)->data;
 	while (1)
@@ -60,8 +60,7 @@ void	*routine(void *philo)
 		philo_sleep((t_philo *)philo);
 		think((t_philo *)philo);
 		if (((t_philo *)philo)->meals_counter == data->meals_nbr)
-			break;
+			break ;
 	}
 	return (0);
 }
-

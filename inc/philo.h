@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/27 17:52:13 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/27 19:02:01 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_philo
 	t_fork			*l_fork;
 	t_fork			*r_fork;
 	pthread_t		thread_id;
-	struct s_data			*data;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
