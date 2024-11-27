@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/26 20:35:00 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/27 17:52:13 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ long	gettime_in_ms(void);
 void	thread_managing(t_data *data);
 void	free_all_data(t_data *data);
 void	error_msg_free(char *msg, t_data *data);
-void	think(t_data *data);
-void	philo_sleep(t_data *data);
-void	eat(t_data *data);
+void	think(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	eat(t_philo *philo);
 void	*routine(void *philo);
 
 #endif
