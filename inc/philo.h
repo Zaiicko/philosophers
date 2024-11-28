@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/27 19:02:01 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/11/28 02:59:54 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef pthread_mutex_t	t_mtx;
-
 struct	s_data;
 
 typedef struct s_fork
 {
-	t_mtx	fork;
-	int		id;
+	pthread_mutex_t	fork;
+	int				id;
 }	t_fork;
 
 typedef struct s_philo
@@ -45,15 +43,15 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int			philos_nbr;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			meals_nbr;
-	long		start_time;
-	t_mtx		lock;
-	t_fork		*forks;
-	t_philo		*philos;
+	int				philos_nbr;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_nbr;
+	long			start_time;
+	pthread_mutex_t	lock;
+	t_fork			*forks;
+	t_philo			*philos;
 }	t_data;
 
 void	error_msg(char *msg);
