@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/30 18:54:27 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/12/01 05:21:48 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	*monitor(void *av)
 		while (i < data->philos_nbr)
 		{
 			pthread_mutex_lock(&data->lock);
-			if (gettime_in_ms() - data->philos[i].last_meal > data->time_to_die)
+			if (gettime_in_ms() - data->philos[i].last_meal >= data->time_to_die)
 			{
-				printf("The philo nbr |%d| died ! Rip bozo\n", data->philos[i].id);
+				printf("%ld The philo nbr |%d| died ! Rip bozo\n", (gettime_in_ms() - data->start_time), data->philos[i].id);
 				pthread_mutex_unlock(&data->lock);
 				return (NULL);
 			}

@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/26 20:36:14 by zaiicko          ###   ########.fr       */
+/*   Updated: 2024/12/01 05:31:17 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_philosophers(t_data *data)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].meals_counter = 0;
-		data->philos[i].last_meal = 0;
+		data->philos[i].last_meal = data->start_time;
 		data->philos[i].r_fork = &data->forks[(i + 1) % data->philos_nbr];
 		data->philos[i].l_fork = &data->forks[i];
 		if ((i + 1) % 2)
@@ -65,6 +65,6 @@ void	init_fork(t_data *data)
 void	init_data(t_data *data)
 {
 	init_fork(data);
-	init_philo(data);
 	data->start_time = gettime_in_ms();
+	init_philo(data);
 }
