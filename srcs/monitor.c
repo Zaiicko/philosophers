@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/12/02 21:36:23 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:14:04 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*monitor(void *av)
 			{
 				printf("%ld The philo nbr |%d| died ! Rip bozo\n",
 					(gettime_in_ms() - data->start_time), data->philos[i].id);
+				set_stop_flag(data, 1);
 				pthread_mutex_unlock(&data->lock);
 				return (NULL);
 			}

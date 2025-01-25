@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/29 04:06:55 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:15:06 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals_nbr;
+	int				stop_flag;
 	long			start_time;
 	int				flag;
 	pthread_mutex_t	lock;
+	pthread_mutex_t	stop_lock;
 	pthread_t		monitor_thread_id;
 	t_fork			*forks;
 	t_philo			*philos;
@@ -74,5 +76,7 @@ void	philo_sleep(t_philo *philo);
 void	eat(t_philo *philo);
 void	*routine(void *philo);
 void	*monitor(void *av);
+void	set_stop_flag(t_data *data, int flag);
+int	get_stop_flag(t_data *data);
 
 #endif
