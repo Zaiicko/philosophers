@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/01/25 19:17:31 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:26:41 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,17 @@ int	get_stop_flag(t_data *data)
 	pthread_mutex_unlock(&data->stop_lock);
 	return (flag);
 }
+
+void	opti_usleep(long time, t_data *data)
+{
+	long	start;
+
+	start = gettime_in_ms();
+	while ((gettime_in_ms() - start) < time)
+	{
+		if (get_stop_flag(data))
+			break;
+		usleep(500);
+	}
+}
+

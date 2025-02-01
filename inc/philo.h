@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/01/25 19:15:06 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:26:57 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	*routine(void *philo);
 void	*monitor(void *av);
 void	set_stop_flag(t_data *data, int flag);
 int	get_stop_flag(t_data *data);
+void	opti_usleep(long time, t_data *data);
 
 #endif
