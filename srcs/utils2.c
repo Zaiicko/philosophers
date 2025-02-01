@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/01 18:36:41 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:46:15 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,8 @@ void	opti_usleep(long time, t_data *data)
 			break ;
 		usleep(500);
 	}
+}
+
+void	check_and_unlock(t_data *data)
+{
 }
