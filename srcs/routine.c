@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/01 18:30:28 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:37:04 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*routine(void *philo)
 	while (1)
 	{
 		if (get_stop_flag(data))
-			break;
+			break ;
 		eat((t_philo *)philo);
 		philo_sleep((t_philo *)philo);
 		think((t_philo *)philo);
