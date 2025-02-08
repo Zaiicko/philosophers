@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/08 18:30:15 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:43:26 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,6 @@ void	init_data(t_data *data)
 	init_fork(data);
 	data->start_time = gettime_in_ms();
 	init_philo(data);
-	if (data->philos_nbr == 1)
-	{
-		free_all_data(data);
-		error_msg("There is only 1 philo, bring him a friend\n");
-	}
 	data->stop_flag = 0;
 	if (pthread_mutex_init(&data->stop_lock, NULL) != 0)
 	{
