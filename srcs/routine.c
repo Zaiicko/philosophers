@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/01 18:37:04 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/08 16:27:37 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,10 @@ void	eat(t_philo *philo)
 		return ;
 	pthread_mutex_lock(&philo->r_fork->fork);
 	if (get_stop_flag(data))
-	{
-		pthread_mutex_unlock(&philo->r_fork->fork);
-		return ;
-	}
+		return (fork_unlock(data, 0));
 	pthread_mutex_lock(&philo->l_fork->fork);
 	if (get_stop_flag(data))
-	{
-		pthread_mutex_unlock(&philo->r_fork->fork);
-		pthread_mutex_unlock(&philo->l_fork->fork);
-		return ;
-	}
+		return (fork_unlock(data, 1));
 	ts = gettime_in_ms() - data->start_time;
 	printf("%ld %d is eating\n", ts, philo->id);
 	pthread_mutex_lock(&data->lock);

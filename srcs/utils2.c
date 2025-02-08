@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/01 18:46:15 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/08 16:26:39 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	opti_usleep(long time, t_data *data)
 	}
 }
 
-void	check_and_unlock(t_data *data)
+void	fork_unlock(t_data *data, int left_lock)
 {
+	pthread_mutex_unlock(&data->philos->r_fork->fork);
+	if (left_lock)
+		pthread_mutex_unlock(&data->philos->l_fork->fork);
 }
