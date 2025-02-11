@@ -6,7 +6,7 @@
 #    By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 00:52:34 by zaiicko           #+#    #+#              #
-#    Updated: 2025/01/25 19:15:26 by zaiicko          ###   ########.fr        #
+#    Updated: 2025/02/11 18:52:56 by zaiicko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	main.c\
 	routine.c\
 	monitor.c\
 	utils2.c\
+	utils3.c\
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRCS))
 

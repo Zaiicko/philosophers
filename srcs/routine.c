@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/08 16:27:37 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:52:38 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	eat(t_philo *philo)
 	data = ((t_philo *)philo)->data;
 	if (get_stop_flag(data))
 		return ;
-	pthread_mutex_lock(&philo->r_fork->fork);
+	mutex_lock_and_print(&philo->r_fork->fork, philo);
 	if (get_stop_flag(data))
 		return (fork_unlock(data, 0));
-	pthread_mutex_lock(&philo->l_fork->fork);
+	mutex_lock_and_print(&philo->l_fork->fork, philo);
 	if (get_stop_flag(data))
 		return (fork_unlock(data, 1));
 	ts = gettime_in_ms() - data->start_time;
@@ -67,6 +67,11 @@ void	*routine(void *philo)
 	t_data	*data;
 
 	data = ((t_philo *)philo)->data;
+	if (data->philos_nbr == 1)
+	{
+		one_philo_case(philo);
+		return (0);
+	}
 	while (1)
 	{
 		if (get_stop_flag(data))

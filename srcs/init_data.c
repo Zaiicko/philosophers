@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/08 18:43:26 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:33:51 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ void	init_data(t_data *data)
 	init_philo(data);
 	data->stop_flag = 0;
 	if (pthread_mutex_init(&data->stop_lock, NULL) != 0)
+	{
+		free_all_data(data);
+		error_msg("Error\nmutex init failed\n");
+	}
+	if (pthread_mutex_init(&data->print_lock, NULL) != 0)
 	{
 		free_all_data(data);
 		error_msg("Error\nmutex init failed\n");

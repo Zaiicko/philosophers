@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/08 16:26:50 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:50:11 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	long			start_time;
 	int				flag;
 	pthread_mutex_t	lock;
+	pthread_mutex_t	print_lock;
 	pthread_mutex_t	stop_lock;
 	pthread_t		monitor_thread_id;
 	t_fork			*forks;
@@ -80,5 +81,7 @@ void	set_stop_flag(t_data *data, int flag);
 int		get_stop_flag(t_data *data);
 void	opti_usleep(long time, t_data *data);
 void	fork_unlock(t_data *data, int left_lock);
+void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo);
+void	one_philo_case(t_philo *philo);
 
 #endif
