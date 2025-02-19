@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:51:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/11 18:38:43 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/19 20:52:32 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,15 @@ void	fork_unlock(t_data *data, int left_lock)
 
 void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo)
 {
+	t_data	*data;
+
+	data = philo->data;
 	pthread_mutex_lock(fork);
+	if (get_stop_flag(data))
+	{
+		pthread_mutex_unlock(fork);
+		return ;
+	}
 	pthread_mutex_lock(&philo->data->print_lock);
 	printf("%ld %d has taken a fork\n", gettime_in_ms()
 		- philo->data->start_time, philo->id);
