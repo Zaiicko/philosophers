@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/11 18:50:11 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:46:28 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	opti_usleep(long time, t_data *data);
 void	fork_unlock(t_data *data, int left_lock);
 void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo);
 void	one_philo_case(t_philo *philo);
+void	destroy_all_mutex(t_data *data);
+int		check_status(t_data *data, int	*eating_philos);
 
 #endif
