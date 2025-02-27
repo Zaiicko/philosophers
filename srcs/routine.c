@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/11 18:52:38 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:10:33 by meskrabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	eat(t_philo *philo)
 		return (fork_unlock(data, 1));
 	ts = gettime_in_ms() - data->start_time;
 	printf("%ld %d is eating\n", ts, philo->id);
-	pthread_mutex_lock(&data->lock);
+	pthread_mutex_lock(&data->last_meal_lock);
 	philo->last_meal = gettime_in_ms();
+	pthread_mutex_unlock(&data->last_meal_lock);
+	pthread_mutex_lock(&data->counter_lock);
 	philo->meals_counter++;
-	pthread_mutex_unlock(&data->lock);
+	pthread_mutex_unlock(&data->counter_lock);
 	opti_usleep(data->time_to_eat, data);
 	pthread_mutex_unlock(&philo->r_fork->fork);
 	pthread_mutex_unlock(&philo->l_fork->fork);

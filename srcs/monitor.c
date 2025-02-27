@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/26 15:46:49 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:12:14 by meskrabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,24 @@ int	check_status(t_data *data, int	*eating_philos)
 	while (i < data->philos_nbr)
 	{
 		pthread_mutex_lock(&data->lock);
+		pthread_mutex_lock(&data->last_meal_lock);
 		if (gettime_in_ms() - data->philos[i].last_meal
 			>= data->time_to_die)
 		{
 			printf("%ld The philo nbr |%d| died ! Rip bozo\n",
 				(gettime_in_ms() - data->start_time), data->philos[i].id);
 			set_stop_flag(data, 1);
+			pthread_mutex_unlock(&data->last_meal_lock);
 			pthread_mutex_unlock(&data->lock);
 			return (1);
 		}
+		pthread_mutex_unlock(&data->last_meal_lock);
+		pthread_mutex_lock(&data->counter_lock);
 		if (data->philos[i].meals_counter < data->meals_nbr)
 			*eating_philos = 0;
 		else
 			(*eating_philos)++;
+		pthread_mutex_unlock(&data->counter_lock);
 		pthread_mutex_unlock(&data->lock);
 		i++;
 	}

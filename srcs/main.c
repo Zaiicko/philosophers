@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 01:54:58 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/01 18:33:44 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:52:33 by meskrabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@ int	main(int ac, char **av)
 	parse_args(ac, av, &data);
 	init_data(&data);
 	thread_managing(&data);
+	destroy_all_mutex(&data);
+	free_all_data(&data);
 }

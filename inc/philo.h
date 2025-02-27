@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/26 15:46:28 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:11:12 by meskrabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_data
 	pthread_mutex_t	lock;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	stop_lock;
+	pthread_mutex_t	last_meal_lock;
+	pthread_mutex_t	counter_lock;
 	pthread_t		monitor_thread_id;
 	t_fork			*forks;
 	t_philo			*philos;
