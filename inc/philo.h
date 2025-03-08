@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/27 15:11:12 by meskrabe         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:36:03 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo);
 void	one_philo_case(t_philo *philo);
 void	destroy_all_mutex(t_data *data);
 int		check_status(t_data *data, int	*eating_philos);
+int		philo_dead(t_data *data, int i);
 
 #endif
