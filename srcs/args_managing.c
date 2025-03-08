@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:03:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2024/11/24 04:14:09 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/08 15:13:14 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	check_if_valid_numbers(char **av)
 	int	j;
 
 	i = 0;
+	if (ft_atol(av[0]) == 0)
+		error_msg("Error\nNeed at least one philo\n");
 	while (av[i])
 	{
 		if (ft_atol(av[i]) < 0 || ft_atol(av[i]) > INT_MAX)
