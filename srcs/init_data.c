@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/27 15:11:43 by meskrabe         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:28:09 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ void	init_fork(t_data *data)
 	}
 }
 
-void	init_data(t_data *data)
+void	init_mutex(t_data *data)
 {
-	init_fork(data);
-	data->start_time = gettime_in_ms();
-	init_philo(data);
-	data->stop_flag = 0;
+	if (pthread_mutex_init(&data->lock, NULL) != 0)
+	{
+		free_all_data(data);
+		error_msg("Error\nmutex init failed\n");
+	}
 	if (pthread_mutex_init(&data->stop_lock, NULL) != 0)
 	{
 		free_all_data(data);
@@ -88,4 +89,13 @@ void	init_data(t_data *data)
 		free_all_data(data);
 		error_msg("Error\nmutex init failed\n");
 	}
+}
+
+void	init_data(t_data *data)
+{
+	init_fork(data);
+	data->start_time = gettime_in_ms();
+	init_philo(data);
+	data->stop_flag = 0;
+	init_mutex(data);
 }

@@ -42,11 +42,11 @@ void	opti_usleep(long time, t_data *data)
 	}
 }
 
-void	fork_unlock(t_data *data, int left_lock)
+void	fork_unlock(t_philo *philo, int left_lock)
 {
-	pthread_mutex_unlock(&data->philos->r_fork->fork);
+	pthread_mutex_unlock(&philo->r_fork->fork);
 	if (left_lock)
-		pthread_mutex_unlock(&data->philos->l_fork->fork);
+		pthread_mutex_unlock(&philo->l_fork->fork);
 }
 
 void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo)

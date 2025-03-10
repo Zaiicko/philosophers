@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/08 14:29:10 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/09 13:10:54 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	philo_dead(t_data *data, int i)
 			(gettime_in_ms() - data->start_time), data->philos[i].id);
 		set_stop_flag(data, 1);
 		pthread_mutex_unlock(&data->last_meal_lock);
-		pthread_mutex_unlock(&data->lock);
 		return (1);
 	}
 	pthread_mutex_unlock(&data->last_meal_lock);

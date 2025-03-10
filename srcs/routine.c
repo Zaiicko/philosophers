@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/02/27 15:10:33 by meskrabe         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:00:16 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	eat(t_philo *philo)
 		return ;
 	mutex_lock_and_print(&philo->r_fork->fork, philo);
 	if (get_stop_flag(data))
-		return (fork_unlock(data, 0));
+		return (fork_unlock(philo, 0));
 	mutex_lock_and_print(&philo->l_fork->fork, philo);
 	if (get_stop_flag(data))
-		return (fork_unlock(data, 1));
+		return (fork_unlock(philo, 1));
 	ts = gettime_in_ms() - data->start_time;
 	printf("%ld %d is eating\n", ts, philo->id);
 	pthread_mutex_lock(&data->last_meal_lock);
@@ -48,8 +48,7 @@ void	eat(t_philo *philo)
 	philo->meals_counter++;
 	pthread_mutex_unlock(&data->counter_lock);
 	opti_usleep(data->time_to_eat, data);
-	pthread_mutex_unlock(&philo->r_fork->fork);
-	pthread_mutex_unlock(&philo->l_fork->fork);
+	fork_unlock(philo, 1);
 }
 
 void	think(t_philo *philo)
@@ -74,10 +73,8 @@ void	*routine(void *philo)
 		one_philo_case(philo);
 		return (0);
 	}
-	while (1)
+	while (!get_stop_flag(data))
 	{
-		if (get_stop_flag(data))
-			break ;
 		eat((t_philo *)philo);
 		philo_sleep((t_philo *)philo);
 		think((t_philo *)philo);

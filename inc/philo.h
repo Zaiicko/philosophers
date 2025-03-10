@@ -82,7 +82,7 @@ void	*monitor(void *av);
 void	set_stop_flag(t_data *data, int flag);
 int		get_stop_flag(t_data *data);
 void	opti_usleep(long time, t_data *data);
-void	fork_unlock(t_data *data, int left_lock);
+void	fork_unlock(t_philo *philo, int left_lock);
 void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo);
 void	one_philo_case(t_philo *philo);
 void	destroy_all_mutex(t_data *data);
