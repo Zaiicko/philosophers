@@ -12,6 +12,19 @@
 
 #include "../inc/philo.h"
 
+void	init_mutex(t_data *data)
+{
+	if (pthread_mutex_init(&data->lock, NULL) != 0
+		|| pthread_mutex_init(&data->stop_lock, NULL) != 0
+		|| pthread_mutex_init(&data->print_lock, NULL) != 0
+		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
+		|| pthread_mutex_init(&data->counter_lock, NULL) != 0)
+	{
+		destroy_all_mutex(data);
+		error_msg_free("Error\nmutex init failed\n", data);
+	}
+}
+
 void	init_philosophers(t_data *data)
 {
 	int	i;
@@ -38,7 +51,10 @@ void	init_philo(t_data *data)
 {
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->philos_nbr);
 	if (!data->philos)
-		error_msg_free("Error\nphilo struc allocation failed\n", data);
+	{
+		free(data->forks);
+		error_msg("Error\nphilosopher struct allocation failed\n");
+	}
 	init_philosophers(data);
 }
 
@@ -59,20 +75,6 @@ void	init_fork(t_data *data)
 		}
 		data->forks[i].id = i;
 		i++;
-	}
-}
-
-void	init_mutex(t_data *data)
-{
-	if (pthread_mutex_init(&data->lock, NULL) != 0
-		|| pthread_mutex_init(&data->stop_lock, NULL) != 0
-		|| pthread_mutex_init(&data->print_lock, NULL) != 0
-		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
-		|| pthread_mutex_init(&data->counter_lock, NULL) != 0)
-	{
-		destroy_all_mutex(data);
-		free_all_data(data);
-		error_msg("Error\nmutex init failed\n");
 	}
 }
 
