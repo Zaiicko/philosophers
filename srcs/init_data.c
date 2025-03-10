@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/09 12:28:09 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/10 22:49:14 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,13 @@ void	init_fork(t_data *data)
 
 void	init_mutex(t_data *data)
 {
-	if (pthread_mutex_init(&data->lock, NULL) != 0)
+	if (pthread_mutex_init(&data->lock, NULL) != 0
+		|| pthread_mutex_init(&data->stop_lock, NULL) != 0
+		|| pthread_mutex_init(&data->print_lock, NULL) != 0
+		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
+		|| pthread_mutex_init(&data->counter_lock, NULL) != 0)
 	{
-		free_all_data(data);
-		error_msg("Error\nmutex init failed\n");
-	}
-	if (pthread_mutex_init(&data->stop_lock, NULL) != 0)
-	{
-		free_all_data(data);
-		error_msg("Error\nmutex init failed\n");
-	}
-	if (pthread_mutex_init(&data->print_lock, NULL) != 0)
-	{
-		free_all_data(data);
-		error_msg("Error\nmutex init failed\n");
-	}
-	if (pthread_mutex_init(&data->last_meal_lock, NULL) != 0)
-	{
-		free_all_data(data);
-		error_msg("Error\nmutex init failed\n");
-	}
-	if (pthread_mutex_init(&data->counter_lock, NULL) != 0)
-	{
+		destroy_all_mutex(data);
 		free_all_data(data);
 		error_msg("Error\nmutex init failed\n");
 	}
