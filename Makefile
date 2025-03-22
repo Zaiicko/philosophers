@@ -6,13 +6,13 @@
 #    By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 00:52:34 by zaiicko           #+#    #+#              #
-#    Updated: 2025/02/27 13:22:59 by meskrabe         ###   ########.fr        #
+#    Updated: 2025/03/22 13:29:27 by zaiicko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=thread
 INC_DIR = inc
 INC = -I$(INC_DIR)
 SRC_DIR = srcs
