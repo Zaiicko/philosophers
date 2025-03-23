@@ -63,13 +63,13 @@ void	*monitor(void *av)
 			return (NULL);
 		if (data->meals_nbr != -1 && eating_philos == data->philos_nbr)
 		{
+			set_stop_flag(data, 1);
+			usleep(100);
 			pthread_mutex_lock(&data->print_lock);
 			printf("That was a good meal ! %d times in a row.\n",
 				data->meals_nbr);
 			pthread_mutex_unlock(&data->print_lock);
-			set_stop_flag(data, 1);
 			return (NULL);
 		}
-		usleep(10000);
 	}
 }
