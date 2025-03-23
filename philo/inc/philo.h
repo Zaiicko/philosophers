@@ -88,5 +88,6 @@ void	one_philo_case(t_philo *philo);
 void	destroy_all_mutex(t_data *data);
 int		check_status(t_data *data, int	*eating_philos);
 int		philo_dead(t_data *data, int i);
+void	update_meal_status(t_philo *philo, t_data *data);
 
 #endif

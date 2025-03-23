@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 19:57:37 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:43:56 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->stop_lock, NULL) != 0
 		|| pthread_mutex_init(&data->print_lock, NULL) != 0
 		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
-		|| pthread_mutex_init(&data->counter_lock, NULL) != 0 || pthread_mutex_init(&data->eating_lock, NULL) != 0)
+		|| pthread_mutex_init(&data->counter_lock, NULL) != 0
+		|| pthread_mutex_init(&data->eating_lock, NULL) != 0)
 	{
 		destroy_all_mutex(data);
 		error_msg_free("Error\nmutex init failed\n", data);

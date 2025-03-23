@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 19:58:47 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:52:54 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ void	philo_sleep(t_philo *philo)
 	opti_usleep(data->time_to_sleep, data);
 }
 
+void	update_meal_status(t_philo *philo, t_data *data)
+{
+	pthread_mutex_lock(&data->eating_lock);
+	philo->is_eating = 1;
+	pthread_mutex_unlock(&data->eating_lock);
+	pthread_mutex_lock(&data->counter_lock);
+	philo->meals_counter++;
+	pthread_mutex_unlock(&data->counter_lock);
+	opti_usleep(data->time_to_eat, data);
+	pthread_mutex_lock(&data->last_meal_lock);
+	philo->last_meal = gettime_in_ms();
+	pthread_mutex_unlock(&data->last_meal_lock);
+}
+
 void	eat(t_philo *philo)
 {
 	t_data	*data;
@@ -42,19 +56,10 @@ void	eat(t_philo *philo)
 	if (get_stop_flag(data))
 		return (fork_unlock(philo, 1));
 	ts = gettime_in_ms() - data->start_time;
-	pthread_mutex_lock(&data->eating_lock);
-	philo->is_eating = 1;
-	pthread_mutex_unlock(&data->eating_lock);
 	pthread_mutex_lock(&data->print_lock);
 	printf("%ld %d is eating\n", ts, philo->id);
 	pthread_mutex_unlock(&data->print_lock);
-	pthread_mutex_lock(&data->counter_lock);
-	philo->meals_counter++;
-	pthread_mutex_unlock(&data->counter_lock);
-	opti_usleep(data->time_to_eat, data);
-	pthread_mutex_lock(&data->last_meal_lock);
-	philo->last_meal = gettime_in_ms();
-	pthread_mutex_unlock(&data->last_meal_lock);
+	update_meal_status(philo, data);
 	fork_unlock(philo, 1);
 }
 
