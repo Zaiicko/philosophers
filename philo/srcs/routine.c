@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:09:28 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 17:51:05 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 17:56:34 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	philo_sleep(t_philo *philo)
 	if (get_stop_flag(data))
 		return ;
 	ts = gettime_in_ms() - data->start_time;
-	thread_mutex_lock(data->print_lock);
+	pthread_mutex_lock(&data->print_lock);
 	printf("%ld %d is sleeping\n", ts, philo->id);
-	thread_mutex_unlock(data->print_lock);
+	pthread_mutex_unlock(&data->print_lock);
 	opti_usleep(data->time_to_sleep, data);
 }
 
@@ -42,9 +42,9 @@ void	eat(t_philo *philo)
 	if (get_stop_flag(data))
 		return (fork_unlock(philo, 1));
 	ts = gettime_in_ms() - data->start_time;
-	thread_mutex_lock(data->print_lock);
+	pthread_mutex_lock(&data->print_lock);
 	printf("%ld %d is eating\n", ts, philo->id);
-	thread_mutex_unlock(data->print_lock);
+	pthread_mutex_unlock(&data->print_lock);
 	pthread_mutex_lock(&data->last_meal_lock);
 	philo->last_meal = gettime_in_ms();
 	pthread_mutex_unlock(&data->last_meal_lock);
@@ -64,9 +64,9 @@ void	think(t_philo *philo)
 	if (get_stop_flag(data))
 		return ;
 	ts = gettime_in_ms() - data->start_time;
-	thread_mutex_lock(data->print_lock);
+	pthread_mutex_lock(&data->print_lock);
 	printf("%ld %d is thinking\n", ts, philo->id);
-	thread_mutex_unlock(data->print_lock);
+	pthread_mutex_unlock(&data->print_lock);
 }
 
 void	*routine(void *philo)
