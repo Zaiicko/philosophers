@@ -50,18 +50,28 @@ void	update_meal_status(t_philo *philo, t_data *data)
 void	eat(t_philo *philo)
 {
 	t_data	*data;
+	int		r_locked;
+	int		l_locked;
 
 	data = ((t_philo *)philo)->data;
+	r_locked = 0;
+	l_locked = 0;
 	if (get_stop_flag(data))
 		return ;
-	mutex_lock_and_print(&philo->r_fork->fork, philo);
+	if (!mutex_lock_and_print(&philo->r_fork->fork, philo))
+		r_locked = 1;
 	if (get_stop_flag(data))
-		return (fork_unlock(philo, 0));
-	mutex_lock_and_print(&philo->l_fork->fork, philo);
+	{
+		if (r_locked)
+			pthread_mutex_unlock(&philo->r_fork->fork);
+		return ;
+	}
+	if (!mutex_lock_and_print(&philo->l_fork->fork, philo))
+		l_locked = 1;
 	if (get_stop_flag(data))
-		return (fork_unlock(philo, 1));
+		return (fork_unlock(philo, r_locked, l_locked));
 	update_meal_status(philo, data);
-	fork_unlock(philo, 1);
+	fork_unlock(philo, r_locked, l_locked);
 }
 
 void	think(t_philo *philo)

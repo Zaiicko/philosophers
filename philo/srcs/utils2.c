@@ -42,14 +42,15 @@ void	opti_usleep(long time, t_data *data)
 	}
 }
 
-void	fork_unlock(t_philo *philo, int left_lock)
+void	fork_unlock(t_philo *philo, int r_locked, int l_locked)
 {
-	pthread_mutex_unlock(&philo->r_fork->fork);
-	if (left_lock)
+	if (r_locked)
+		pthread_mutex_unlock(&philo->r_fork->fork);
+	if (l_locked)
 		pthread_mutex_unlock(&philo->l_fork->fork);
 }
 
-void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo)
+int	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo)
 {
 	t_data	*data;
 
@@ -58,10 +59,11 @@ void	mutex_lock_and_print(pthread_mutex_t *fork, t_philo *philo)
 	if (get_stop_flag(data))
 	{
 		pthread_mutex_unlock(fork);
-		return ;
+		return (1);
 	}
 	pthread_mutex_lock(&philo->data->print_lock);
 	printf("%ld %d has taken a fork\n", gettime_in_ms()
 		- philo->data->start_time, philo->id);
 	pthread_mutex_unlock(&philo->data->print_lock);
+	return (0);
 }
