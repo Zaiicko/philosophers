@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/09 13:10:54 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 13:55:18 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	philo_dead(t_data *data, int i)
 	if (gettime_in_ms() - data->philos[i].last_meal
 		>= data->time_to_die)
 	{
-		printf("%ld The philo nbr |%d| died ! Rip bozo\n",
+		printf("%ld %d died\n",
 			(gettime_in_ms() - data->start_time), data->philos[i].id);
 		set_stop_flag(data, 1);
 		pthread_mutex_unlock(&data->last_meal_lock);

@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:03:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/08 15:13:14 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 13:55:34 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_if_valid_numbers(char **av)
 	while (av[i])
 	{
 		if (ft_atol(av[i]) < 0 || ft_atol(av[i]) > INT_MAX)
-			error_msg("Error\nInvalid number in args");
+			error_msg("Error\nInvalid number in args\n");
 		j = 0;
 		while (av[i][j])
 		{
