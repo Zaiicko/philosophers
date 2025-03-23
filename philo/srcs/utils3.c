@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:48:19 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/09 12:19:51 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 18:28:50 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	destroy_all_mutex(t_data *data)
 	}
 	pthread_mutex_destroy(&data->print_lock);
 	pthread_mutex_destroy(&data->stop_lock);
-	pthread_mutex_destroy(&data->lock);
 	pthread_mutex_destroy(&data->last_meal_lock);
 	pthread_mutex_destroy(&data->counter_lock);
 }

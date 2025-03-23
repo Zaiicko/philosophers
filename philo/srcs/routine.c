@@ -45,13 +45,13 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&data->print_lock);
 	printf("%ld %d is eating\n", ts, philo->id);
 	pthread_mutex_unlock(&data->print_lock);
-	pthread_mutex_lock(&data->last_meal_lock);
-	philo->last_meal = gettime_in_ms();
-	pthread_mutex_unlock(&data->last_meal_lock);
 	pthread_mutex_lock(&data->counter_lock);
 	philo->meals_counter++;
 	pthread_mutex_unlock(&data->counter_lock);
 	opti_usleep(data->time_to_eat, data);
+	pthread_mutex_lock(&data->last_meal_lock);
+	philo->last_meal = gettime_in_ms();
+	pthread_mutex_unlock(&data->last_meal_lock);
 	fork_unlock(philo, 1);
 }
 

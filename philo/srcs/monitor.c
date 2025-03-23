@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 17:52:47 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 18:28:17 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,14 @@ int	check_status(t_data *data, int	*eating_philos)
 	*eating_philos = 0;
 	while (i < data->philos_nbr)
 	{
-		pthread_mutex_lock(&data->lock);
 		if (philo_dead(data, i))
-		{
-			pthread_mutex_unlock(&data->lock);
 			return (1);
-		}
 		pthread_mutex_lock(&data->counter_lock);
 		if (data->philos[i].meals_counter < data->meals_nbr)
 			*eating_philos = 0;
 		else
 			(*eating_philos)++;
 		pthread_mutex_unlock(&data->counter_lock);
-		pthread_mutex_unlock(&data->lock);
 		i++;
 	}
 	return (0);
