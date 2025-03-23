@@ -29,6 +29,12 @@ void	philo_sleep(t_philo *philo)
 
 void	update_meal_status(t_philo *philo, t_data *data)
 {
+	long	ts;
+
+	ts = gettime_in_ms() - data->start_time;
+	pthread_mutex_lock(&data->print_lock);
+	printf("%ld %d is eating\n", ts, philo->id);
+	pthread_mutex_unlock(&data->print_lock);
 	pthread_mutex_lock(&data->eating_lock);
 	philo->is_eating = 1;
 	pthread_mutex_unlock(&data->eating_lock);
@@ -44,7 +50,6 @@ void	update_meal_status(t_philo *philo, t_data *data)
 void	eat(t_philo *philo)
 {
 	t_data	*data;
-	long	ts;
 
 	data = ((t_philo *)philo)->data;
 	if (get_stop_flag(data))
@@ -55,10 +60,6 @@ void	eat(t_philo *philo)
 	mutex_lock_and_print(&philo->l_fork->fork, philo);
 	if (get_stop_flag(data))
 		return (fork_unlock(philo, 1));
-	ts = gettime_in_ms() - data->start_time;
-	pthread_mutex_lock(&data->print_lock);
-	printf("%ld %d is eating\n", ts, philo->id);
-	pthread_mutex_unlock(&data->print_lock);
 	update_meal_status(philo, data);
 	fork_unlock(philo, 1);
 }
