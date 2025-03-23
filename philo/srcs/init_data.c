@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 18:29:29 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 19:57:37 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->stop_lock, NULL) != 0
 		|| pthread_mutex_init(&data->print_lock, NULL) != 0
 		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
-		|| pthread_mutex_init(&data->counter_lock, NULL) != 0)
+		|| pthread_mutex_init(&data->counter_lock, NULL) != 0 || pthread_mutex_init(&data->eating_lock, NULL) != 0)
 	{
 		destroy_all_mutex(data);
 		error_msg_free("Error\nmutex init failed\n", data);
@@ -33,7 +33,7 @@ void	init_philosophers(t_data *data)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].meals_counter = 0;
-		data->philos[i].last_meal = data->start_time;
+		data->philos[i].last_meal = gettime_in_ms();
 		data->philos[i].r_fork = &data->forks[(i + 1) % data->philos_nbr];
 		data->philos[i].l_fork = &data->forks[i];
 		if ((i + 1) % 2)
@@ -42,6 +42,7 @@ void	init_philosophers(t_data *data)
 			data->philos[i].l_fork = &data->forks[(i + 1) % data->philos_nbr];
 		}
 		data->philos[i].data = data;
+		data->philos[i].is_eating = 0;
 		i++;
 	}
 }
@@ -80,8 +81,8 @@ void	init_fork(t_data *data)
 void	init_data(t_data *data)
 {
 	init_fork(data);
-	data->start_time = gettime_in_ms();
-	init_philo(data);
-	data->stop_flag = 0;
 	init_mutex(data);
+	init_philo(data);
+	data->start_time = gettime_in_ms();
+	data->stop_flag = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/08 14:36:03 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/23 19:56:48 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				id;
 	long			meals_counter;
 	long			last_meal;
+	int				is_eating;
 	t_fork			*l_fork;
 	t_fork			*r_fork;
 	pthread_t		thread_id;
@@ -50,12 +51,11 @@ typedef struct s_data
 	int				meals_nbr;
 	int				stop_flag;
 	long			start_time;
-	int				flag;
-	pthread_mutex_t	lock;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	last_meal_lock;
 	pthread_mutex_t	counter_lock;
+	pthread_mutex_t	eating_lock;
 	pthread_t		monitor_thread_id;
 	t_fork			*forks;
 	t_philo			*philos;
