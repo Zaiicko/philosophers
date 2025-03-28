@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:09:48 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 20:00:24 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:17:19 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	philo_dead(t_data *data, int i)
 {
 	pthread_mutex_lock(&data->last_meal_lock);
+	pthread_mutex_lock(&data->eating_lock);
 	if (gettime_in_ms() - data->philos[i].last_meal
 		>= data->time_to_die && data->philos[i].is_eating == 0)
 	{
@@ -24,9 +25,11 @@ int	philo_dead(t_data *data, int i)
 		pthread_mutex_unlock(&data->print_lock);
 		set_stop_flag(data, 1);
 		pthread_mutex_unlock(&data->last_meal_lock);
+		pthread_mutex_unlock(&data->eating_lock);
 		return (1);
 	}
 	pthread_mutex_unlock(&data->last_meal_lock);
+	pthread_mutex_unlock(&data->eating_lock);
 	return (0);
 }
 
