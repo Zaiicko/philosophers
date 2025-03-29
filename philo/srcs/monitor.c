@@ -19,14 +19,19 @@ int	philo_dead(t_data *data, int i)
 	if (gettime_in_ms() - data->philos[i].last_meal
 		>= data->time_to_die && data->philos[i].is_eating == 0)
 	{
-		pthread_mutex_lock(&data->print_lock);
-		printf("%ld %d died\n",
-			(gettime_in_ms() - data->start_time), data->philos[i].id);
-		pthread_mutex_unlock(&data->print_lock);
-		set_stop_flag(data, 1);
-		pthread_mutex_unlock(&data->last_meal_lock);
-		pthread_mutex_unlock(&data->eating_lock);
-		return (1);
+		usleep(500);
+		if (gettime_in_ms() - data->philos[i].last_meal
+			>= data->time_to_die && data->philos[i].is_eating == 0)
+		{
+			pthread_mutex_lock(&data->print_lock);
+			printf("%ld %d died\n",
+				(gettime_in_ms() - data->start_time), data->philos[i].id);
+			pthread_mutex_unlock(&data->print_lock);
+			set_stop_flag(data, 1);
+			pthread_mutex_unlock(&data->last_meal_lock);
+			pthread_mutex_unlock(&data->eating_lock);
+			return (1);
+		}
 	}
 	pthread_mutex_unlock(&data->last_meal_lock);
 	pthread_mutex_unlock(&data->eating_lock);
