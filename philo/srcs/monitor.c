@@ -79,5 +79,6 @@ void	*monitor(void *av)
 			pthread_mutex_unlock(&data->print_lock);
 			return (NULL);
 		}
+		usleep(500);
 	}
 }
