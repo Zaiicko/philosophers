@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: zaiicko <meskrabe@student.s19.be>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/04/13 02:57:36 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/04/13 13:23:07 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,26 @@
 
 void	init_mutex(t_data *data)
 {
-	if (pthread_mutex_init(&data->stop_lock, NULL) != 0
-		|| pthread_mutex_init(&data->print_lock, NULL) != 0
-		|| pthread_mutex_init(&data->last_meal_lock, NULL) != 0
-		|| pthread_mutex_init(&data->counter_lock, NULL) != 0
-		|| pthread_mutex_init(&data->eating_lock, NULL) != 0)
-	{
-		destroy_all_mutex(data);
-		error_msg_free("Error\nmutex init failed\n", data);
-	}
+	if (pthread_mutex_init(&data->stop_lock, NULL) == 0)
+		data->stop_init = 1;
+	else
+		destroy_mutex_and_cleanup(data);
+	if (pthread_mutex_init(&data->print_lock, NULL) == 0)
+		data->print_init = 1;
+	else
+		destroy_mutex_and_cleanup(data);
+	if (pthread_mutex_init(&data->last_meal_lock, NULL) == 0)
+		data->last_meal_init = 1;
+	else
+		destroy_mutex_and_cleanup(data);
+	if (pthread_mutex_init(&data->counter_lock, NULL) == 0)
+		data->counter_init = 1;
+	else
+		destroy_mutex_and_cleanup(data);
+	if (pthread_mutex_init(&data->eating_lock, NULL) == 0)
+		data->eating_init = 1;
+	else
+		destroy_mutex_and_cleanup(data);
 }
 
 void	init_philosophers(t_data *data)
@@ -72,9 +83,11 @@ void	init_fork(t_data *data)
 	{
 		if (pthread_mutex_init(&data->forks[i].fork, NULL))
 		{
+			destroy_all_mutex(data);
 			free(data->forks);
 			error_msg("Error\nmutex init failed\n");
 		}
+		data->forks[i].init = 1;
 		data->forks[i].id = i;
 		i++;
 	}

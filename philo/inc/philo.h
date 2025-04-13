@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: zaiicko <meskrabe@student.s19.be>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 03:52:56 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 19:56:48 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/04/13 13:21:32 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_fork
 {
 	pthread_mutex_t	fork;
 	int				id;
+	int				init;
 }	t_fork;
 
 typedef struct s_philo
@@ -56,6 +57,11 @@ typedef struct s_data
 	pthread_mutex_t	last_meal_lock;
 	pthread_mutex_t	counter_lock;
 	pthread_mutex_t	eating_lock;
+	int				print_init;
+	int				stop_init;
+	int				last_meal_init;
+	int				counter_init;
+	int				eating_init;
 	pthread_t		monitor_thread_id;
 	t_fork			*forks;
 	t_philo			*philos;
@@ -89,5 +95,6 @@ void	destroy_all_mutex(t_data *data);
 int		check_status(t_data *data, int	*eating_philos);
 int		philo_dead(t_data *data, int i);
 void	update_meal_status(t_philo *philo, t_data *data);
+void	destroy_mutex_and_cleanup(t_data *data);
 
 #endif
