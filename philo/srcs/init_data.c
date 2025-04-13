@@ -6,7 +6,7 @@
 /*   By: zaiicko <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:59:09 by zaiicko           #+#    #+#             */
-/*   Updated: 2025/03/23 22:43:56 by zaiicko          ###   ########.fr       */
+/*   Updated: 2025/04/13 02:57:36 by zaiicko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_philo(t_data *data)
 	if (!data->philos)
 	{
 		free(data->forks);
+		destroy_all_mutex(data);
 		error_msg("Error\nphilosopher struct allocation failed\n");
 	}
 	init_philosophers(data);
